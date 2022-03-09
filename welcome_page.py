@@ -7,6 +7,7 @@ DESCRIPTION: So far this is the welcome page. Probably will integrate most thing
             over to the main screen. 
 
 '''
+from distutils.command.upload import upload
 from tkinter import *
 import tkinter as tk
 from typing import final
@@ -35,7 +36,7 @@ class tome_to_read(tk.Tk):
 
         self.frames = {}
         
-        for F in (start_page,welcome_page, page_two, settings_page, upload_page): # and ereader page
+        for F in (start_page,main_menu, settings_page, upload_page): # and ereader page, about us page, library page
             frame = F(self.container,self)
 
             self.frames[F] = frame
@@ -65,9 +66,87 @@ class start_page(tk.Frame):
         logo_label.place(relx=.55, rely=.4, anchor= CENTER)
         # end of main logo creation, implementation, placing into frame
 
-        instructions = Button(self, text="Click here to begin!", font=("Raleway", 32), command=lambda: controller.show_frame(welcome_page), borderwidth=0)
+        instructions = Button(self, text="Click here to begin!", font=("Raleway", 32), command=lambda: controller.show_frame(main_menu), borderwidth=0)
         instructions.place(relx=.55,rely=.95, anchor= S)
         
+
+# Music is supposed to play when this screen is shown, 
+class main_menu(tk.Frame):
+    def __init__(self,parent, controller):
+        tk.Frame.__init__(self,parent)        
+        label = Label(self, text="Welcome to Tome to Read!")
+        label.pack(padx=10,pady=10)
+        label.place(relx=.5, anchor=N)
+
+        # button layout
+        # library button, upload button
+        # about us button, settings button
+
+        # button for about us page | Page not implemented 
+        about_us_btn = customtkinter.CTkButton(
+            self,
+            width = 100,
+            height = 50,
+            border_width=0,
+            corner_radius=2,
+            text="About Us",
+            text_font = ("Raleway", 15)
+            # implement command once about us page is done
+
+        )
+        about_us_btn.pack(side="left")
+        about_us_btn.place(relx=.45, rely=.775, anchor=CENTER)
+        
+        # button for library page | Page not implemented
+        library_btn = customtkinter.CTkButton(
+            self,
+            width = 100,
+            height = 50,
+            border_width=0,
+            corner_radius=2,
+            text="Read",
+            text_font = ("Raleway", 15)
+            # implement command once library page is done
+        )
+        library_btn.pack(anchor=CENTER)
+        library_btn.place(relx=.45,rely=.7,anchor=CENTER)
+
+        # button for upload page
+        
+        upload_btn = customtkinter.CTkButton(
+            self,
+            width = 100,
+            height = 50,
+            border_width=0,
+            corner_radius=2,
+            text="Upload",
+            text_font=("Raleway", 15),
+            command = lambda: controller.show_frame(upload_page)
+        )
+        upload_btn.pack(anchor=CENTER)
+        upload_btn.place(relx=.55,rely=.7,anchor=CENTER)
+
+        # button for settings page
+        settings_btn = customtkinter.CTkButton(
+            self,
+            width = 100,
+            height = 50,
+            border_width=0,
+            corner_radius=2,
+            text="Settings",
+            text_font= ("Raleway", 15),
+            command = lambda: controller.show_frame(settings_page)
+        )
+        settings_btn.pack(anchor=CENTER)
+        settings_btn.place(relx=.55, rely=.775, anchor=CENTER)
+
+        # logo in main menu
+        logo = Image.open("TomeToRead_Logo.png")
+        logo = logo.resize((350,380))
+        logo = ImageTk.PhotoImage(logo)
+        logo_label = Label(self,image=logo)
+        logo_label.image = logo
+        logo_label.place(relx=.5, rely=.3, anchor= CENTER)
 
 class upload_page(tk.Frame):
     def __init__(self,parent, controller):
@@ -89,7 +168,7 @@ class upload_page(tk.Frame):
         corner_radius=2,
         image=back_arrow_img,
         text = '',
-        command= lambda: controller.show_frame(welcome_page)
+        command= lambda: controller.show_frame(main_menu)
         )
         back_arrow.pack(side="left")
         back_arrow.place(x=50, y= 50, anchor=W)
@@ -100,9 +179,9 @@ class welcome_page(tk.Frame):
         label = Label(self, text = "Start Page")
         label.pack(pady=10,padx=10)
 
-        button1 = tk.Button(self,text = "Go to Page 2", command=lambda: controller.show_frame(page_two))
+        # button1 = tk.Button(self,text = "Go to Page 2", command=lambda: controller.show_frame(page_two))
 
-        button1.pack()
+        # button1.pack()
 
         button2 = tk.Button(self,text= "Go to settings page!", command=lambda: controller.show_frame(settings_page))
         button2.pack()
@@ -135,21 +214,11 @@ class settings_page(tk.Frame):
         corner_radius=2,
         image=back_arrow_img,
         text = '',
-        command= lambda: controller.show_frame(welcome_page)
+        command= lambda: controller.show_frame(main_menu)
         )
         back_arrow.pack(side="left")
         back_arrow.place(x=50, y= 50, anchor=W)
 
-
-class page_two(tk.Frame):
-    def __init__(self,parent, controller):
-        tk.Frame.__init__(self,parent)
-        label = Label(self, text = "Page Two")
-        label.pack(pady=10,padx=10)
-
-        button1 = tk.Button(self,text = "Back to welcome page", command=lambda: controller.show_frame(welcome_page))
-
-        button1.pack()
 
 # ereader page currently does NOT work. 
 '''
