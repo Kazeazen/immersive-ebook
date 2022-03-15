@@ -10,6 +10,7 @@ DESCRIPTION: So far this is the welcome page. Probably will integrate most thing
 from distutils.command.upload import upload
 from tkinter import *
 import tkinter as tk
+from tkinter.filedialog import askopenfile
 from typing import final
 from PIL import Image, ImageTk
 import customtkinter
@@ -24,6 +25,27 @@ book_library = pd.read_csv(url) #print to see what the panda looks like
 url= 'https://raw.githubusercontent.com/colbychambers25/immersive-ebook/page_audio_map/Sound_audio_map.csv'
 audio_map = pd.read_csv(url)
 prev_song = ['none']
+
+def upload_file(text,root, file_type, type_of_upload):
+    if type_of_upload == "Music":
+        file_type = [("Mp3 Files","*.mp3")]
+    if type_of_upload == "Story":
+        file_type = [("Pdf file","*.pdf"), ("text files","txt")]
+    file = askopenfile(parent=root,mode="rb", title=f'Choose {type_of_upload} to upload!', filetype=file_type)
+    if type_of_upload == "Music" and file:
+        # do something with the music file
+        pass
+    if type_of_upload == "Story" and file:
+        # do something with the pdf/text file
+        pass
+
+def placeholder_upload_func(root,music_or_story):
+    file = askopenfile(parent=root,mode="rb", title=f"Choose {music_or_story} to upload!", filetype=[("Pdf file","*.pdf"), ("text files","txt")])
+    if file:
+        print("testcase 1 passed: file was able to be loaded in.")
+    else:
+        print("testcase 1 failed, file did not load properly")
+
 
 class tome_to_read(tk.Tk):
     def __init__(self, *args, **kwargs):
@@ -173,25 +195,41 @@ class upload_page(tk.Frame):
         back_arrow.pack(side="left")
         back_arrow.place(x=50, y= 50, anchor=W)
 
-class welcome_page(tk.Frame):
-    def __init__(self,parent, controller):
-        tk.Frame.__init__(self,parent)
-        label = Label(self, text = "Start Page")
-        label.pack(pady=10,padx=10)
+        # Upload Story button, only allows upload of txt and pdf files
+        '''upload_text = tk.StringVar()
+        upload_btn = customtkinter.CTkButton(
+            self,
+            textvariable=upload_text,
+            command = lambda: upload_file(upload_text,self)
 
-        # button1 = tk.Button(self,text = "Go to Page 2", command=lambda: controller.show_frame(page_two))
-
-        # button1.pack()
-
-        button2 = tk.Button(self,text= "Go to settings page!", command=lambda: controller.show_frame(settings_page))
-        button2.pack()
-
-        '''button3 = tk.Button(self, text = "Go to ereader!", command = lambda: controller.show_frame(ereader_page))
-        button3.pack()'''
-
-        button4 = tk.Button(self,text = "Upload", command = lambda: controller.show_frame(upload_page))
-        button4.pack()
-
+        )''' # need to experiment and see how uploading files should be stored/saved, pickle module might be a good option.
+        # placeholder upload button
+        upload_btn = customtkinter.CTkButton(
+            self,
+            width=100,
+            height=50,
+            border_width=0,
+            corner_radius=2,
+            text="Upload Story",
+            text_font = ("Raleway", 15),
+            command = lambda: placeholder_upload_func(self,"Story")
+        )
+        
+        upload_btn.place(relx=.3, rely=.75, anchor= CENTER)
+    
+        # Upload Music button, only allows upload of mp3 files
+        # placeholder upload music button
+        music_upload = customtkinter.CTkButton(
+            self,
+            width=100,
+            height=50,
+            border_width=0,
+            corner_radius=2,
+            text="Upload Music",
+            text_font = ("Raleway", 15),
+            command = lambda: placeholder_upload_func(self,"Music")
+        )
+        music_upload.place(relx=.7,rely=.75,anchor = CENTER)
 
 class settings_page(tk.Frame):
     def __init__(self,parent, controller):
