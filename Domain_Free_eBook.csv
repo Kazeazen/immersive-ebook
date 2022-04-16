@@ -1,7 +1,12 @@
-URL,Title,Author,Year Published,Provider,Views,Genre
-https://raw.githubusercontent.com/colbychambers25/immersive-ebook/txt-file-books/The_War_of_the_Worlds,The War of the Worlds,H.G. Wells,1897,github,0,Sci-Fi
-https://raw.githubusercontent.com/colbychambers25/immersive-ebook/txt-file-books/Treasure_island,Treasure Island,Robert Louis Stevenson,1883,github,0,Fantasy
-https://raw.githubusercontent.com/colbychambers25/immersive-ebook/txt-file-books/Micromegas,Micromegas,Voltaire,1852,github,0,Sci-Fi
-https://raw.githubusercontent.com/colbychambers25/immersive-ebook/txt-file-books/the_raven,The Raven,Edgar Allen Poe,1845,github,0,Horror
-https://raw.githubusercontent.com/colbychambers25/immersive-ebook/txt-file-books/A_little_journey.txt,A Little Journey,Ray Bradbury,1951,github,0,Sci-Fi
-https://raw.githubusercontent.com/colbychambers25/immersive-ebook/main/drifting_towards_purpose.txt,Drifting Towards Purpose,Colby Chambers,2020,github,0,Sci-Fi
+URL,Title,Author,Year Published,Provider,Views,Genre,Cover
+ereadStories/The_War_of_the_Worlds.txt,The War of the Worlds,H.G. Wells,1897,github,0,Sci-Fi,ereadpngs/warofworldscover.jpg
+ereadStories/Treasure_island.txt,Treasure Island,Robert Louis Stevenson,1883,github,0,Fantasy,ereadpngs/treasurecover.jpg
+ereadStories/Micromegas.txt,Micromegas,Voltaire,1852,github,0,Sci-Fi,ereadpngs/microcover.jpg
+ereadStories/the_raven.txt,The Raven,Edgar Allen Poe,1845,github,0,Horror,ereadpngs/theravencover.jpg
+ereadStories/A_little_journey.txt,A Little Journey,Ray Bradbury,1951,github,0,Sci-Fi,ereadpngs/littlejourney.jpg
+ereadStories/drifting_towards_purpose.txt,Drifting Towards Purpose,Colby Chambers,2020,github,0,Sci-Fi,ereadpngs/driftingcover.jpg
+ereadStories/great_gatsby.txt,The Great Gatsby,F. Scott Fitzgerald,1925,github,0,Historical Fiction,ereadpngs/gatsbycover.jpg
+ereadStories/Alice_in_wonderland.txt,Alice’s Adventures in Wonderland,Lewis Carroll,1865,github,0,Fantasy,ereadpngs/alicecover.jpg
+ereadStories/callofthewild.txt,The Call of the Wild,Jack London,1903,github,0,Historical Fiction,ereadpngs/callofwildcover.jpg
+ereadStories/The_time_machine.txt,The Time Machine,H.G. Wells,1895,github,0,Sci-Fi,ereadpngs/timemachinecover.jpg
+
